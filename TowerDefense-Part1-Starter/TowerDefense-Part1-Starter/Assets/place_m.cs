@@ -2,21 +2,29 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlaceMonster : MonoBehaviour
+public class place_m : MonoBehaviour
 {
 
 
     public GameObject monsterPrefab;
 private GameObject monster;
 
-private bool CanPlaceMonster()
-{
-  return monster == null;
-}
 
 
+    // Start is called before the first frame update
+    void Start()
+    {
+        
+    }
 
-//1
+    // Update is called once per frame
+    void Update()
+    {
+        
+    }
+    
+    
+    //1
 void OnMouseUp()
 {
   //2
@@ -33,18 +41,9 @@ void OnMouseUp()
   }
 }
 
+private bool CanPlaceMonster()
+{
+  return monster == null;
+}
 
-
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }
