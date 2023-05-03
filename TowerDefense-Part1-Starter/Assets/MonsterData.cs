@@ -13,6 +13,7 @@ public class MonsterData : MonoBehaviour
 {
     public List<MonsterLevel> levels;   
     private MonsterLevel currentLevel;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -60,5 +61,30 @@ public class MonsterData : MonoBehaviour
     void OnEnable(){
         CurrentLevel = levels[0];
     }
+
+    public MonsterLevel GetNextLevel()
+    {
+        int currentLevelIndex = levels.IndexOf (currentLevel);
+        int maxLevelIndex = levels.Count - 1;
+        if (currentLevelIndex < maxLevelIndex)
+        {
+            return levels[currentLevelIndex+1];
+        } 
+            else
+        {
+            return null;
+        }
+    }
+
+    public void IncreaseLevel()
+    {
+        int currentLevelIndex = levels.IndexOf(currentLevel);
+        if (currentLevelIndex < levels.Count - 1)
+        {
+        CurrentLevel = levels[currentLevelIndex + 1];
+        }
+    }
+
+
 }
 
