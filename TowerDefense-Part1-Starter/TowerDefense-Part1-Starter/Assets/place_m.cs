@@ -39,11 +39,35 @@ void OnMouseUp()
 
     // TODO: Deduct gold
   }
+
+else if (CanUpgradeMonster())
+{
+  monster.GetComponent<MonsterData>().IncreaseLevel();
+  AudioSource audioSource = gameObject.GetComponent<AudioSource>();
+  audioSource.PlayOneShot(audioSource.clip);
+  // TODO: Deduct gold
+}
 }
 
 private bool CanPlaceMonster()
 {
   return monster == null;
 }
+
+
+private bool CanUpgradeMonster()
+{
+  if (monster != null)
+  {
+    MonsterData monsterData = monster.GetComponent<MonsterData>();
+    MonsterLevel nextLevel = monsterData.GetNextLevel();
+    if (nextLevel != null)
+    {
+      return true;
+    }
+  }
+  return false;
+}
+
 
 }
