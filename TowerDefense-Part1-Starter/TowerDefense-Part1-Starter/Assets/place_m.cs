@@ -9,18 +9,19 @@ public class place_m : MonoBehaviour
     public GameObject monsterPrefab;
 private GameObject monster;
 
-
+private GameManagerBehavior gameManager;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+      gameManager = GameObject.Find("GameManager").GetComponent<GameManagerBehavior>();
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+      
     }
     
     
@@ -28,16 +29,20 @@ private GameObject monster;
 void OnMouseUp()
 {
   //2
+  
   if (CanPlaceMonster())
   {
     //3
     monster = (GameObject) 
       Instantiate(monsterPrefab, transform.position, Quaternion.identity);
+      
     //4
     AudioSource audioSource = gameObject.GetComponent<AudioSource>();
     audioSource.PlayOneShot(audioSource.clip);
+    
 
-    // TODO: Deduct gold
+    gameManager.Gold -= monster.GetComponent<MonsterData>().CurrentLevel.cost;
+
   }
 
 else if (CanUpgradeMonster())
@@ -45,13 +50,15 @@ else if (CanUpgradeMonster())
   monster.GetComponent<MonsterData>().IncreaseLevel();
   AudioSource audioSource = gameObject.GetComponent<AudioSource>();
   audioSource.PlayOneShot(audioSource.clip);
-  // TODO: Deduct gold
+  gameManager.Gold -= monster.GetComponent<MonsterData>().CurrentLevel.cost;
+
 }
 }
 
 private bool CanPlaceMonster()
 {
-  return monster == null;
+  int cost = monsterPrefab.GetComponent<MonsterData>().levels[0].cost;
+return monster == null && gameManager.Gold >= cost;
 }
 
 
