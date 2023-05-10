@@ -3,7 +3,6 @@ using System.Collections;
 
 public class PlaceMonster : MonoBehaviour
 {
-
     public GameObject monsterPrefab;
     private GameObject monster;
     private GameManagerBehavior gameManager;
@@ -31,7 +30,7 @@ public class PlaceMonster : MonoBehaviour
         if (CanPlaceMonster())
         {
             monster = (GameObject) Instantiate(monsterPrefab, transform.position, Quaternion.identity);
-            
+
             AudioSource audioSource = gameObject.GetComponent<AudioSource>();
             audioSource.PlayOneShot(audioSource.clip);
 
@@ -39,7 +38,7 @@ public class PlaceMonster : MonoBehaviour
         }
         else if (CanUpgradeMonster())
         {
-            monster.GetComponent<MonsterData>().IncreaseLevel();
+            monster.GetComponent<MonsterData>().increaseLevel();
             AudioSource audioSource = gameObject.GetComponent<AudioSource>();
             audioSource.PlayOneShot(audioSource.clip);
 
@@ -52,7 +51,7 @@ public class PlaceMonster : MonoBehaviour
         if (monster != null)
         {
             MonsterData monsterData = monster.GetComponent<MonsterData>();
-            MonsterLevel nextLevel = monsterData.GetNextLevel();
+            MonsterLevel nextLevel = monsterData.getNextLevel();
             if (nextLevel != null)
             {
                 return gameManager.Gold >= nextLevel.cost;
