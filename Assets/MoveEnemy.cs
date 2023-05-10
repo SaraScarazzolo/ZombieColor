@@ -12,6 +12,21 @@ private int currentWaypoint = 0;
 private float lastWaypointSwitchTime;
 public float speed = 1.0f;
 
+private void RotateIntoMoveDirection()
+{
+  //1
+  Vector3 newStartPosition = waypoints [currentWaypoint].transform.position;
+  Vector3 newEndPosition = waypoints [currentWaypoint + 1].transform.position;
+  Vector3 newDirection = (newEndPosition - newStartPosition);
+  //2
+  float x = newDirection.x;
+  float y = newDirection.y;
+  float rotationAngle = Mathf.Atan2 (y, x) * 180 / Mathf.PI;
+  //3
+  GameObject sprite = gameObject.transform.Find("Sprite").gameObject;
+  sprite.transform.rotation = Quaternion.AngleAxis(rotationAngle, Vector3.forward);
+}
+
     // Start is called before the first frame update
     void Start()
     {
@@ -47,9 +62,13 @@ public float speed = 1.0f;
 
             AudioSource audioSource = gameObject.GetComponent<AudioSource>();
             AudioSource.PlayClipAtPoint(audioSource.clip, transform.position);
-            // TODO: deduct health
+            GameManagerBehavior gameManager = GameObject.Find("GameManager").GetComponent<GameManagerBehavior>();
+            gameManager.Health -= 1;
+
           }
         }
+
+RotateIntoMoveDirection();
 
     }
 }
