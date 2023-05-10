@@ -7,6 +7,8 @@ using UnityEngine;
 public class MonsterLevel{
     public int cost;
     public GameObject visualization;
+    public GameObject bullet;
+    public float fireRate;
 }
 
 public class MonsterData : MonoBehaviour
@@ -29,33 +31,33 @@ public class MonsterData : MonoBehaviour
     //1
     public MonsterLevel CurrentLevel
     {
-    //2
-    get 
-    {
-        return currentLevel;
-    }
-    //3
-    set
-    {
-        currentLevel = value;
-        int currentLevelIndex = levels.IndexOf(currentLevel);
-
-        GameObject levelVisualization = levels[currentLevelIndex].visualization;
-        for (int i = 0; i < levels.Count; i++)
+        //2
+        get 
         {
-            if (levelVisualization != null) 
+            return currentLevel;
+        }
+        //3
+        set
+        {
+            currentLevel = value;
+            int currentLevelIndex = levels.IndexOf(currentLevel);
+
+            GameObject levelVisualization = levels[currentLevelIndex].visualization;
+            for (int i = 0; i < levels.Count; i++)
             {
-                if (i == currentLevelIndex) 
+                if (levelVisualization != null) 
                 {
-                levels[i].visualization.SetActive(true);
-                }
-                else
-                {
-                levels[i].visualization.SetActive(false);
+                    if (i == currentLevelIndex) 
+                    {
+                        levels[i].visualization.SetActive(true);
+                    }
+                    else
+                    {
+                        levels[i].visualization.SetActive(false);
+                    }
                 }
             }
         }
-    }
     }
 
     void OnEnable(){
@@ -70,7 +72,7 @@ public class MonsterData : MonoBehaviour
         {
             return levels[currentLevelIndex+1];
         } 
-            else
+        else
         {
             return null;
         }
@@ -81,7 +83,7 @@ public class MonsterData : MonoBehaviour
         int currentLevelIndex = levels.IndexOf(currentLevel);
         if (currentLevelIndex < levels.Count - 1)
         {
-        CurrentLevel = levels[currentLevelIndex + 1];
+            CurrentLevel = levels[currentLevelIndex + 1];
         }
     }
 

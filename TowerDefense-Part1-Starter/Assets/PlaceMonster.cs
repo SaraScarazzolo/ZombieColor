@@ -29,14 +29,14 @@ public class PlaceMonster : MonoBehaviour
         //2
         if (CanPlaceMonster())
         {
-        //3
-        monster = (GameObject) 
+          //3
+            monster = (GameObject) 
             Instantiate(monsterPrefab, transform.position, Quaternion.identity);
-        //4
-        AudioSource audioSource = gameObject.GetComponent<AudioSource>();
-        audioSource.PlayOneShot(audioSource.clip);
+          //4
+          AudioSource audioSource = gameObject.GetComponent<AudioSource>();
+          audioSource.PlayOneShot(audioSource.clip);
 
-        gameManager.Gold -= monster.GetComponent<MonsterData>().CurrentLevel.cost;
+          gameManager.Gold -= monster.GetComponent<MonsterData>().CurrentLevel.cost;
 
         }
         else if (CanUpgradeMonster())
@@ -50,25 +50,25 @@ public class PlaceMonster : MonoBehaviour
         
     }
 
-private bool CanPlaceMonster()
-{
-    int cost = monsterPrefab.GetComponent<MonsterData>().levels[0].cost;
-    return monster == null && gameManager.Gold >= cost;
-}
-
-private bool CanUpgradeMonster()
-{
-  if (monster != null)
-  {
-    MonsterData monsterData = monster.GetComponent<MonsterData>();
-    MonsterLevel nextLevel = monsterData.GetNextLevel();
-    if (nextLevel != null)
+    private bool CanPlaceMonster()
     {
-      return gameManager.Gold >= nextLevel.cost;
+      int cost = monsterPrefab.GetComponent<MonsterData>().levels[0].cost;
+      return monster == null && gameManager.Gold >= cost;
     }
+
+    private bool CanUpgradeMonster()
+    {
+      if (monster != null)
+      {
+        MonsterData monsterData = monster.GetComponent<MonsterData>();
+        MonsterLevel nextLevel = monsterData.GetNextLevel();
+      if (nextLevel != null)
+      {
+        return gameManager.Gold >= nextLevel.cost;
+      }
+      }
+      return false;
   }
-  return false;
-}
 
 }
 
