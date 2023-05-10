@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 8966334797236105204}
   - component: {fileID: 8966334797236105205}
   - component: {fileID: 6676781060793209931}
+  - component: {fileID: 3848839422016073884}
   m_Layer: 0
   m_Name: Openspot
   m_TagString: Untagged
@@ -208,3 +209,16 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &3848839422016073884
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8966334797236105210}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86df8a07b238178439087096523e252d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  monsterPrefab: {fileID: 134384, guid: f29d67ead1d3b481e815d39f2f51f446, type: 3}
