@@ -339,13 +339,16 @@
 -r:"Library/Bee/artifacts/1900b0aE.dag/Unity.VSCode.Editor.ref.dll"
 -r:"Library/Bee/artifacts/1900b0aE.dag/UnityEditor.UI.ref.dll"
 -r:"Library/Bee/artifacts/1900b0aE.dag/UnityEngine.UI.ref.dll"
+"Assets/EnemyDestructionDelegate.cs"
 "Assets/GameManagerBehavior.cs"
+"Assets/HealthBar.cs"
 "Assets/MonsterData.cs"
 "Assets/MoveEnemy.cs"
 "Assets/PlaceMonster.cs"
 "Assets/Scripts/CameraShake.cs"
 "Assets/Scripts/GameOver.cs"
 "Assets/Scripts/Tutorial.cs"
+"Assets/ShootEnemies.cs"
 "Assets/SpawnEnemy.cs"
 -langversion:9.0
 
