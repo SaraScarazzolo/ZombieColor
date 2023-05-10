@@ -70,7 +70,7 @@ private bool CanUpgradeMonster()
     MonsterLevel nextLevel = monsterData.GetNextLevel();
     if (nextLevel != null)
     {
-      return true;
+      return gameManager.Gold >= nextLevel.cost;
     }
   }
   return false;
