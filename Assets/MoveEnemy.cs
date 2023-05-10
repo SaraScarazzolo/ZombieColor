@@ -1,6 +1,5 @@
+﻿using UnityEngine;
 using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 
 public class MoveEnemy : MonoBehaviour
 {
@@ -11,33 +10,32 @@ public class MoveEnemy : MonoBehaviour
     private float lastWaypointSwitchTime;
     public float speed = 1.0f;
 
-    // Start is called before the first frame update
+    // Use this for initialization
     void Start()
     {
         lastWaypointSwitchTime = Time.time;
-
     }
 
     // Update is called once per frame
-    void Update(){
-        // 1 
-        Vector3 startPosition = waypoints [currentWaypoint].transform.position;
-        Vector3 endPosition = waypoints [currentWaypoint + 1].transform.position;
-        // 2 
-        float pathLength = Vector3.Distance (startPosition, endPosition);
+    void Update()
+    {
+        Vector3 startPosition = waypoints[currentWaypoint].transform.position;
+        Vector3 endPosition = waypoints[currentWaypoint + 1].transform.position;
+        float pathLength = Vector2.Distance(startPosition, endPosition);
         float totalTimeForPath = pathLength / speed;
         float currentTimeOnPath = Time.time - lastWaypointSwitchTime;
-        gameObject.transform.position = Vector2.Lerp (startPosition, endPosition, currentTimeOnPath / totalTimeForPath);
-        // 3 
-        if (gameObject.transform.position.Equals(endPosition)){
-            if (currentWaypoint < waypoints.Length - 2){
-                // 3.a 
+        gameObject.transform.position = Vector2.Lerp(startPosition, endPosition, currentTimeOnPath / totalTimeForPath);
+ 
+        if (gameObject.transform.position.Equals(endPosition))
+        {
+            if (currentWaypoint < waypoints.Length - 2)
+            {
                 currentWaypoint++;
                 lastWaypointSwitchTime = Time.time;
                 // TODO: Rotate into move direction
             }
-            else{
-                // 3.b 
+            else
+            {
                 Destroy(gameObject);
 
                 AudioSource audioSource = gameObject.GetComponent<AudioSource>();
@@ -46,4 +44,5 @@ public class MoveEnemy : MonoBehaviour
             }
         }
     }
+
 }

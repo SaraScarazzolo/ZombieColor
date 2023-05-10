@@ -1,13 +1,13 @@
+﻿using UnityEngine;
 using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 
 public class SpawnEnemy : MonoBehaviour
 {
+
     public GameObject[] waypoints;
     public GameObject testEnemyPrefab;
 
-    // Start is called before the first frame update
+    // Use this for initialization
     void Start()
     {
         Instantiate(testEnemyPrefab).GetComponent<MoveEnemy>().waypoints = waypoints;
@@ -16,6 +16,7 @@ public class SpawnEnemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
+
 }
