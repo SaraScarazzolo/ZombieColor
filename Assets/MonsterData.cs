@@ -7,6 +7,8 @@ public class MonsterLevel
 {
     public int cost;
     public GameObject visualization;
+    public GameObject bullet;
+    public float fireRate;
 }
 
 public class MonsterData : MonoBehaviour
@@ -15,17 +17,6 @@ public class MonsterData : MonoBehaviour
     public List<MonsterLevel> levels;
     private MonsterLevel currentLevel;
 
-    // Use this for initialization
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
 
     //1
     public MonsterLevel CurrentLevel
@@ -59,12 +50,24 @@ public class MonsterData : MonoBehaviour
         }
     }
 
+    // Use this for initialization
+    void Start()
+    {
+
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+
+    }
+
     void OnEnable()
     {
         CurrentLevel = levels[0];
     }
 
-    public MonsterLevel GetNextLevel()
+    public MonsterLevel getNextLevel()
     {
         int currentLevelIndex = levels.IndexOf(currentLevel);
         int maxLevelIndex = levels.Count - 1;
@@ -78,7 +81,7 @@ public class MonsterData : MonoBehaviour
         }
     }
 
-    public void IncreaseLevel()
+    public void increaseLevel()
     {
         int currentLevelIndex = levels.IndexOf(currentLevel);
         if (currentLevelIndex < levels.Count - 1)
